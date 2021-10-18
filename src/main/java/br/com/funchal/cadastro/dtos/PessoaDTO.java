@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -14,12 +13,12 @@ import java.time.LocalDate;
 @Setter
 public class PessoaDTO {
 
-    @NotBlank
-    @NotNull
+    @NotBlank(message = "O campo nome está vazio")
+    @NotNull(message = "O campo nome está nulo")
     private String nome;
-    @CPF
+    @CPF(message = "CPF está com numero inválido")
     private String cpf;
-    @DataFutura
+    @DataFutura(message = "A data inserida é futura")
     private LocalDate dataDeNascimento;
 
 }

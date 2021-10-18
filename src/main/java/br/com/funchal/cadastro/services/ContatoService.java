@@ -1,13 +1,9 @@
 package br.com.funchal.cadastro.services;
 
 import br.com.funchal.cadastro.dtos.ContatoDTO;
-import br.com.funchal.cadastro.dtos.PessoaDTO;
 import br.com.funchal.cadastro.models.Contato;
-import br.com.funchal.cadastro.models.Pessoa;
 import br.com.funchal.cadastro.repositorys.ContatoRepository;
-import br.com.funchal.cadastro.repositorys.PessoaRepository;
 import br.com.funchal.cadastro.responses.ContatoResponse;
-import br.com.funchal.cadastro.responses.PessoaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +22,7 @@ public class ContatoService {
         return repository.save(retornaEntidade(dto));
     }
 
-    public ContatoResponse editaContato(ContatoDTO dto, Long id) {
+    public ContatoResponse editaContato(ContatoDTO dto, Long id) throws Exception {
         Optional<Contato> contatoEncontrado = repository.findById(id);
         Contato contato = verificaExistencia(contatoEncontrado);
         contato.setNome(dto.getNome());
@@ -42,7 +38,7 @@ public class ContatoService {
         return retornaResponse(contato.get());
     }
 
-    public ContatoResponse buscaContato(Long id) {
+    public ContatoResponse buscaContato(Long id) throws Exception {
         Optional<Contato> contato = repository.findById(id);
         return retornaResponse(verificaExistencia(contato));
     }
@@ -54,8 +50,8 @@ public class ContatoService {
     private ContatoResponse retornaResponse(Contato contato) {
         return new ContatoResponse(contato);
     }
-    private Contato verificaExistencia(Optional<Contato> contato) {
+    private Contato verificaExistencia(Optional<Contato> contato) throws Exception {
         if(contato.isPresent()) return contato.get();
-        else return null;
+        else throw new Exception("Contato não encontrado");
     }
 }

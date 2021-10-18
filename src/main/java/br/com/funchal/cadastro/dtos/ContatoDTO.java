@@ -12,11 +12,13 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class ContatoDTO {
 
-    @NotBlank
-    @NotNull
+    @NotBlank(message = "O campo nome está vazio")
+    @NotNull(message = "O campo nome está nulo")
     private String nome;
-    @NotBlank @Length(min = 11)
+    @NotBlank(message = "O campo nome está vazio")
+    @Length(min = 11,message = "O campo numero não tem 11 digitos, por favor colocar DDD")
+    @NotNull(message = "O campo nome está nulo")
     private String numeroDeTelefone;
-    @Email
+    @Email(message = "Formato de email invalido")
     private String email;
 }

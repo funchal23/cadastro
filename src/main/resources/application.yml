@@ -4,7 +4,7 @@ spring.datasource.hikari.maximumPoolSize: 5
 
 ## POSTGRESQL
 spring.jpa.properties.hibernate.dialect : org.hibernate.dialect.PostgreSQLDialect
-spring.datasource.url : jdbc:postgresql://localhost:5432/pessoa
+spring.datasource.url : jdbc:postgresql://3.144.173.61:5432/pessoa
 spring.datasource.username : postgres
-spring.datasource.password : 123
+spring.datasource.password : postgres
 spring.jpa.hibernate.ddl-auto: update

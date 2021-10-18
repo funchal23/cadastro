@@ -23,7 +23,7 @@ public class ContatoController {
     private PessoaService pessoaService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ContatoResponse> buscaContato(@PathVariable Long id){
+    public ResponseEntity<ContatoResponse> buscaContato(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok().body(service.buscaContato(id));
     }
 
@@ -35,7 +35,7 @@ public class ContatoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContatoResponse> editaContato(@PathVariable Long id, @RequestBody @Valid ContatoDTO dto){
+    public ResponseEntity<ContatoResponse> editaContato(@PathVariable Long id, @RequestBody @Valid ContatoDTO dto) throws Exception {
         return ResponseEntity.ok().body(service.editaContato(dto, id));
     }
 
